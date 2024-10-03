@@ -8,6 +8,7 @@ Baixar ffmpeg e colocar no PATH do windows
 from pydub import AudioSegment
 import speech_recognition as sr
 from utils.gravarAudio import getAudioMP3Path
+import os
 
 audio_path = getAudioMP3Path()
 
@@ -26,6 +27,7 @@ def menu():
       
       if escolha == 1:
          traducao()
+         printText()
       elif escolha == 2:
          print("Closing...")
          break
@@ -53,5 +55,26 @@ def traducao():
    audio_to_text(wav_path, output_text)
    print(f"Transcricao salva em {output_text}")
 
+def printText():
+    try:
+        with open('transcricao.txt', 'r') as file:
+            text = file.read()
+            print("\nConteúdo da transcrição:\n")
+            print(text)
+    except FileNotFoundError:
+        print("Arquivo transcricao.txt não encontrado. Certifique-se de que o arquivo foi gerado corretamente.")
+
+def remove_files():
+    arquivos = ['transcricao.txt', 'audioToText.wav']
+    for arquivo in arquivos:
+        if os.path.exists(arquivo):
+            os.remove(arquivo)
+            print(f"{arquivo} removido.")
+        else:
+            print(f"{arquivo} não encontrado.")
+
 if __name__ == '__main__':
-    menu()
+    try:
+        menu()
+    finally:
+        remove_files()
