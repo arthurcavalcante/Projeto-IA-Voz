@@ -1,14 +1,11 @@
-#
-#
-# <  pip install sounddevice numpy soundfile  >
-#
-#
+'''
+<  pip install sounddevice numpy soundfile  >
+'''
 
 import sounddevice as sd
 import numpy as np
 import soundfile as sf
 import tempfile
-import os
 
 def gravar_audio(duracao=10, taxa_amostragem=44100, canais=1):
     print("Gravando...")
@@ -34,16 +31,17 @@ def salvar_audio_em_arquivo(audio_array, taxa_amostragem):
     print(f"Áudio salvo em: {temp_audio_file_path}")
     return temp_audio_file_path
 
+'''
+
 def reproduzir_audio(file_path):
     data, fs = sf.read(file_path)
     print("Reproduzindo áudio...")
     sd.play(data, fs)
     sd.wait()
+    
+'''
 
-def main():
-    audio_array, taxa_amostragem = gravar_audio()
-    file_path = salvar_audio_em_arquivo(audio_array, taxa_amostragem)
-    reproduzir_audio(file_path)     # testar o audio
-    os.remove(file_path)        # salva o arquivo e dps remove
-
-main()
+def getAudioMP3Path():
+    audio, tx_amostragem = gravar_audio()
+    audio_path = salvar_audio_em_arquivo(audio, tx_amostragem)
+    return audio_path
