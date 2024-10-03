@@ -1,10 +1,24 @@
 import moviepy.editor as mp
 import speech_recognition as sr
 import moviepy.editor as mp
-import sys from pydub import AudioSegment
 
-#a variável path contem o nome do arquivo do seu vídeo
-path = “nome_do_arquivo.mp4” 
+# Coleta de vídeos e audios. Mp3 e Mp4
+
+video_path = 'nome_do_arquivo.mp4'  
+audio_path = 'exemplo.mp4'
+
+# Escolher qual você vai traduzir
+
+while True:
+   escolha = input('Escolha qual opção você deseja. 1 Para converter Audio para texto, 2 Para converter Vídeo em texto, 3 Para converter Vídeo em audio.')
+   if escolha in [1,2,3]:
+      break
+
+# Escolhendo a tradução correta
+
+def traducao():
+   
+
 
 #converter de mp4 para mp3
 clip = mp.VideoFileClip(path).subclip()
