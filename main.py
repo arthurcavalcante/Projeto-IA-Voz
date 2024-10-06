@@ -9,6 +9,7 @@ from pydub import AudioSegment
 import speech_recognition as sr
 from utils.gravarAudio import getAudioMP3Path
 import os
+from handlers.port_to_eng import corrigir_texto, traducao_para_ingles
 
 audio_path = getAudioMP3Path()
 
@@ -61,6 +62,16 @@ def printText():
             text = file.read()
             print("\nConteúdo da transcrição:\n")
             print(text)
+
+            # Correção gramatical
+            texto_corrigido = corrigir_texto(text)
+            print("\nTexto corrigido:\n")
+            print(texto_corrigido)
+
+            # Tradução para inglês
+            texto_traduzido = traducao_para_ingles(texto_corrigido)
+            print("\nTexto traduzido para inglês:\n")
+            print(texto_traduzido)
     except FileNotFoundError:
         print("Arquivo transcricao.txt não encontrado. Certifique-se de que o arquivo foi gerado corretamente.")
 
